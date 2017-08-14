@@ -321,7 +321,7 @@ if (a<0){
     private void Modificar(){
    
        index= tblCliente.getSelectedRow();
-       tCliente=(cliente)miCliente.lista.get(index);
+     tCliente=(cliente)miCliente.lista.get(index);
         txtnombre.setText(tCliente.nombre);
         txtCedula.setValue(tCliente.cedula);
         spinPeso.setValue(tCliente.peso);
