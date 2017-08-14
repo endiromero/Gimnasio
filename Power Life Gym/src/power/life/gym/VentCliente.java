@@ -6,7 +6,7 @@ package power.life.gym;
 
 
 public class VentCliente extends javax.swing.JFrame {
- cliente miCliente=new cliente();
+ // cliente miCliente=new cliente();
  cliente tCliente;
    Integer index;
    
@@ -197,22 +197,23 @@ public class VentCliente extends javax.swing.JFrame {
             {
                 if(tCliente==null){
                 //nuevo
-                miCliente.nombre = txtnombre.getText();
-                miCliente.cedula = Integer.parseInt(txtCedula.getText()); 
-                miCliente.peso  =  (Integer)spinPeso.getValue();
-                miCliente.telefono = Integer.parseInt(txtNum.getText());
-                miCliente.fechapago = txtPago.getText();
+                cliente nuevoCliente =new cliente();
+                nuevoCliente.nombre = txtnombre.getText();
+                nuevoCliente.cedula = Integer.parseInt(txtCedula.getText()); 
+                nuevoCliente.peso  =  (Integer)spinPeso.getValue();
+                nuevoCliente.telefono = Integer.parseInt(txtNum.getText());
+                nuevoCliente.fechapago = txtPago.getText();
                 //
-                miCliente.Agregar(miCliente);
+                cliente.Agregar(nuevoCliente);
             }
             else 
             {
                 
-                miCliente.lista.get(index).nombre = txtnombre.getText();
-                miCliente.lista.get(index).cedula = Integer.parseInt(txtCedula.getText()); 
-                miCliente.lista.get(index).peso  =  (Integer)spinPeso.getValue();
-                miCliente.lista.get(index).telefono = Integer.parseInt(txtNum.getText());
-                miCliente.lista.get(index).fechapago = txtPago.getText();
+                cliente.lista.get(index).nombre = txtnombre.getText();
+                cliente.lista.get(index).cedula = Integer.parseInt(txtCedula.getText()); 
+                cliente.lista.get(index).peso  =  (Integer)spinPeso.getValue();
+                cliente.lista.get(index).telefono = Integer.parseInt(txtNum.getText());
+                cliente.lista.get(index).fechapago = txtPago.getText();
                 tCliente=null;
             }        
             LimpiaControles();
@@ -248,7 +249,7 @@ public void CargaLista(){
 DefaultTableModel modelo = (DefaultTableModel)tblCliente.getModel();
         modelo.getDataVector().removeAllElements();
         ((DefaultTableModel)tblCliente.getModel()).setNumRows(0);
-        for(cliente item :      miCliente.lista )     
+        for(cliente item :      cliente.lista )     
         {
             Object[] obj = new Object[5];
             obj[0]= item.nombre;
@@ -308,9 +309,9 @@ if (a<0){
         try     
         {
             index = tblCliente.getSelectedRow();
-            tCliente = (cliente)miCliente.lista.get(index);
+            tCliente = (cliente)cliente.lista.get(index);
            
-            miCliente.Eliminar(tCliente);
+            cliente.Eliminar(tCliente);
             CargaLista();
         }
         catch(Exception e)
@@ -321,7 +322,7 @@ if (a<0){
     private void Modificar(){
    
        index= tblCliente.getSelectedRow();
-     tCliente=(cliente)miCliente.lista.get(index);
+     tCliente=(cliente)cliente.lista.get(index);
         txtnombre.setText(tCliente.nombre);
         txtCedula.setValue(tCliente.cedula);
         spinPeso.setValue(tCliente.peso);

@@ -28,13 +28,13 @@ public class cliente {
     public int cedula;
     public int telefono;
     //
-    List<cliente> lista = new ArrayList<cliente>();
+    public static List<cliente> lista = new ArrayList<cliente>();
     
-    public void Agregar(cliente _cliente)
+    public static void Agregar(cliente _cliente)
     {
         lista.add(new cliente(_cliente.nombre, _cliente.cedula, _cliente.peso, _cliente.fechapago, _cliente.telefono ) );
     }
-    public void Eliminar(cliente i)
+    public static void Eliminar(cliente i)
     {
         lista.remove(i);
     }
