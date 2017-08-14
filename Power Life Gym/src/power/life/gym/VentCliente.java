@@ -13,6 +13,7 @@ public class VentCliente extends javax.swing.JFrame {
     public VentCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        CargaLista();
     }
 
     /**
@@ -189,7 +190,7 @@ public class VentCliente extends javax.swing.JFrame {
      CargaLista();
     }
     
-       private void Agregar()
+    private void Agregar()
     {
          try
         {
@@ -269,32 +270,7 @@ DefaultTableModel modelo = (DefaultTableModel)tblCliente.getModel();
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void buteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buteliminarActionPerformed
-       DefaultTableModel model = (DefaultTableModel) tblCliente.getModel(); 
-
-int a = tblCliente.getSelectedRow(); 
-
-if (a<0){
-
-        JOptionPane.showMessageDialog(null,
-        "Debe seleccionar una fila de la tabla" );  
-
-}else {
-
-
-     int confirmar=JOptionPane.showConfirmDialog(null,  
-     "Esta seguro que desea Eliminar el registro? ");
-
-
-
-            if(JOptionPane.OK_OPTION==confirmar) {
-                     
-                    model.removeRow(a);
-
-                    JOptionPane.showMessageDialog(null, 
-                    "Registro Eliminado" );
-             
-             }
-}
+        this.Eliminar();
     }//GEN-LAST:event_buteliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -304,13 +280,24 @@ if (a<0){
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
-   private void Eliminar()
-    {
+   private void Eliminar(){
         try     
         {
+            // toma el valor de la línea seleccionada
             index = tblCliente.getSelectedRow();
-            tCliente = (cliente)cliente.lista.get(index);
-           
+            // elimina la línea de la tabla
+            DefaultTableModel model = (DefaultTableModel) tblCliente.getModel(); 
+            if (index<0){
+                JOptionPane.showMessageDialog(null,  "Debe seleccionar una fila de la tabla" );  
+            }else {
+                int confirmar=JOptionPane.showConfirmDialog(null, "Esta seguro que desea Eliminar el registro? ");
+                if(JOptionPane.OK_OPTION==confirmar) {
+                    model.removeRow(index);
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado" );
+                }
+            }
+            // elimina la línea de la lista.
+            tCliente = (cliente)cliente.lista.get(index);           
             cliente.Eliminar(tCliente);
             CargaLista();
         }
